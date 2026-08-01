@@ -1,68 +1,70 @@
 # CodeAlpha - Basic Network Sniffer 🛜
 
-## Ye project kya karta hai? (Simple explanation)
+## What does this project do? 
 
-Jab bhi hum internet use karte hain (YouTube, WhatsApp, koi bhi website), hamara
-laptop chhoti chhoti "chitthiyan" bhejta aur receive karta hai. Inhe **packets**
-kehte hain.
+Whenever we use the internet (YouTube, WhatsApp, or any website), our laptop
+sends and receives small pieces of data called **packets**.
 
-Ye program un packets ko **pakadta (capture)** hai jab wo hamare laptop se guzarte
-hain, aur screen pe dikhata hai:
+This program **captures** those packets as they pass through the computer and
+displays the following information on the screen:
 
-- 📤 **Source IP** — packet kahan se aaya (kis website/server se)
-- 📥 **Destination IP** — packet kahan jaa raha hai (hamare laptop pe)
-- 🔌 **Protocol** — kis tarah ka packet hai (TCP, UDP, ya ICMP)
-- 📦 **Packet Size** — packet ka size (bytes mein)
-- 👀 **Payload Preview** — packet ke andar ka thoda sa data (agar padha ja sake)
+* 📤 **Source IP** — where the packet came from (website/server)
+* 📥 **Destination IP** — where the packet is going (your computer)
+* 🔌 **Protocol** — the type of packet (TCP, UDP, or ICMP)
+* 📦 **Packet Size** — the size of the packet (in bytes)
+* 👀 **Payload Preview** — a small preview of the packet's data (if it can be read)
 
-> **Note:** Zyada tar websites (Google, YouTube, etc.) apna data encrypt karke
-> bhejti hain (HTTPS), isliye payload zyada tar random letters jaisa dikhta hai —
-> ye normal hai, iska matlab security theek kaam kar rahi hai.
-
----
-
-## File mein kya ho raha hai? (Code walkthrough)
-
-Faayl ka naam: `network_sniffer.py`
-
-1. **Library import:** `scapy` naam ki library use hoti hai jo network packets
-   capture karne mein madad karti hai.
-
-2. **`sniff()` function:** Ye function laptop ke network card ko "sunne" (listen)
-   ke mode mein daal deta hai — jaise koi guard darwaze pe khada ho kar har
-   chitthi check kar raha ho.
-
-3. **`process_packet()` function:** Jab bhi koi packet pakda jata hai, ye function
-   automatically chal jata hai aur us packet ki details (IP, protocol, size,
-   payload) nikal kar screen pe print kar deta hai.
-
-4. **Loop:** Ye process tab tak chalta rehta hai jab tak hum `Ctrl + C` dabakar
-   ise rok nahi dete. Aakhir mein total kitne packets capture hue, wo bhi
-   dikhata hai.
+> **Note:** Most websites (Google, YouTube, etc.) send their data in encrypted
+> form (HTTPS), so the payload usually appears as random characters. This is
+> completely normal and indicates that the connection is secure.
 
 ---
 
-## Kaise run karein?
+## What happens in the file? (Code walkthrough)
+
+File name: `network_sniffer.py`
+
+1. **Library import:** The project uses the `scapy` library to capture and
+   analyze network packets.
+
+2. **`sniff()` function:** This function puts the computer's network interface
+   into listening mode so it can monitor all incoming and outgoing packets.
+
+3. **`process_packet()` function:** Whenever a packet is captured, this function
+   automatically runs and extracts its details (IP, protocol, size, and payload)
+   before displaying them on the screen.
+
+4. **Loop:** The program continues capturing packets until you stop it by
+   pressing `Ctrl + C`. At the end, it also displays the total number of packets
+   that were captured.
+
+---
+
+## How to run the project?
 
 ### Requirements
+
 ```bash
 pip install scapy
 ```
-Windows users: pehle [Npcap](https://npcap.com/#download) install karna zaroori
-hai ("WinPcap API-compatible Mode" checkbox check karke).
 
-### Run karna (Admin/sudo zaroori hai)
+Windows users: Install [Npcap](https://npcap.com/#download) first and enable the
+**"WinPcap API-compatible Mode"** option during installation.
+
+### Run the program (Administrator/sudo privileges are required)
+
 ```bash
-# Windows (VS Code ko Administrator mode mein khol kar)
+# Windows (Open VS Code as Administrator)
 python network_sniffer.py
 
 # Linux/Mac
 sudo python3 network_sniffer.py
 ```
 
-Rokne ke liye: `Ctrl + C`
+To stop the program, press: `Ctrl + C`
 
 ---
+
 
 ## Tools Used
 - Python
